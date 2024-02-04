@@ -1,0 +1,29 @@
+1. Automatically create Main mapping sheet from the reference mapping sheet:-
+	1-> Reference mapping VBA script
+		PythonExePath = """your python exe file path"""
+		PythonScriptPath = your dir + reference_to_main.py
+		ExecutePythonScript this function will create a object shell which will run the py file
+	2-> reference_to_main.py-> we are reading the reference mapping sheet and collecting sensor and 		vehicle msg and signal in a dictionary. Then we are itterating through the rows in 			sensor sheet and if it is mapped we will binary search the vehicle msg in vehicle 		sheet. If the sensor msg is not mapped we will print NOT FOUND. 
+	NOTE:- IF YOUR VEHICLE SIDE MESSAGES ARE NOT SORTED ALPHABETICALLY USE
+		reference_to_main_veh_not_sorted.py SCRIPT
+
+2. Unit Conversion - Open Loop/closed Loop - Automation:-
+	1-> CallPythonFunction(argument1 As Variant, argument2 As Variant, Optional argument3 As 		Variant):-
+		argument1 = From unit (Following SI), argument2 = To unit (Following SI)
+		Optional argument3 = Wheel radius
+		pythonPath = """your python exe path """ // need to collect it from active version
+		pythonScript = "poject_dir\unit_conversion.py" // no need to mention the path now 
+		CallPythonFunction will call unit_conversion.py file 
+	2-> ConvertSuperscript(ByVal str As String):- to handle few edge cases
+	3-> unit_conversion.py->
+		convert_unit(from_unit, to_unit, radius=1, value=1):- this function will provide the
+		value need to be multiply for unit conversion. Few edge cases are also handled here.
+
+3. Merge duplication Switch Case block - Open Loop(for closed loop also we can develop):-
+	1-> genUserappl_cc function:-
+		myDictionary = dictionary where we are keeping track of visited Vehicle ID
+		if it is not visited we are creating a case and marked it as TRUE(visited)
+		and in nested loop we will check if this ID is present further or not if present we 		will add in that case only else we will break that case and move to next ID.
+
+4. comment section:- need all the usecases to proceed
+5. requirements.txt added just open cmd inside the folder and run pip install -r requirements.txt
